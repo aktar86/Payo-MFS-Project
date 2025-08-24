@@ -24,3 +24,39 @@
         
 
         })
+
+
+
+
+        // second page code
+         // add button from head for showing the form
+       document.getElementById('add-Money-form-show').addEventListener('click', function(){
+        const moneyAreaVisible = document.getElementById('money-area-visible');
+        moneyAreaVisible.style.display = 'block';
+       })
+
+        // Add money in account 
+       document.getElementById('add-money-btn').addEventListener('click', function(e){
+        e.preventDefault();
+
+
+        const inputAmount = document.getElementById('input-amount').value;
+        const inputAmountNumber = parseInt(inputAmount);
+
+        const totalAmount = document.getElementById('totoal-Amount');
+        const getTotalAmout = totalAmount.innerText;
+        const totalAmountNumber = parseInt(getTotalAmout)
+        const addMoney = totalAmountNumber + inputAmountNumber;
+        // new Available Balance
+        totalAmount.innerText = addMoney;
+        
+
+
+        const bankName = document.getElementById('bank-name').value;
+        const bankAcNumber = document.getElementById('Bank-AC').value;
+        const pin = document.getElementById('pin-number').value;
+
+        document.getElementById('Bank-AC').value = '';
+        document.getElementById('input-amount').value = '';
+        document.getElementById('pin-number').value = '';
+       })
