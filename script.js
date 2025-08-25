@@ -1,130 +1,130 @@
-            document.getElementById('login-Btn').addEventListener('click', function(e){
-                e.preventDefault()
-                //verify login section
-                const userNumber = '01728456744';
-                const userNumberInt = parseInt(userNumber);
-                const userPin = 1234;
+let validPin = 1234;
 
-                // userId
-                const userId = document.getElementById('userId').value;
-                const userIdInt = parseInt(userId)
-                // userPinNumber
-                const userPinNumber = document.getElementById('userPinNumber').value;
-                const userPinNumberInt = parseInt(userPinNumber)
+document.getElementById('login-Btn').addEventListener('click', function (e) {
+    e.preventDefault()
+    //verify login section
+    const userNumber = '01728456744';
+    const userNumberInt = parseInt(userNumber);
+    const userPin = 1234;
+ 
+    const userId = getInputNumber('userId')
+    const userPinNumber = getInputNumber('userPinNumber')
 
-                if(userIdInt === userNumberInt && userPinNumberInt === userPin){
-                    const loginArea = document.getElementById('loginArea');
-                    loginArea.style.display = 'none';
-                    const secondVisible = document.getElementById('second-page');
-                    secondVisible.style.display = 'block';
-                }
-                else{
-                    alert('please try again boss');
-                }
-            
-
-        })
+    if (userId === userNumberInt && userPinNumber === userPin) {   
+        displayNone('loginArea')
+        displayBlock('second-page')
+    }
+    else {
+        alert('please try again boss');
+    }
+})
 
 
+// second page code
+// add button from head for showing the form
+document.getElementById('add-Money-form-show').addEventListener('click', function () {
+    displayBlock('money-area-visible');
+    displayNone('cashout-area-visible')
+})
 
 
-        // second page code
-        // add button from head for showing the form
-       document.getElementById('add-Money-form-show').addEventListener('click', function(){
-        const moneyAreaVisible = document.getElementById('money-area-visible');
-        moneyAreaVisible.style.display = 'block';
 
-        const cashoutAreaVisible = document.getElementById('cashout-area-visible');
-        cashoutAreaVisible.style.display = 'none';
-       })
+// Add money in account 
+document.getElementById('add-money-btn').addEventListener('click', function (e) {
+    e.preventDefault();
+    const bankName = document.getElementById('bank-name').value;
+    const bankAcNumber = document.getElementById('Bank-AC').value;
+    const pinNumber = getInputNumber('pin-number')
 
-        let validPin = 1234;
+    if (bankAcNumber.length < 11) {
+        alert('Boss! Write correctly Account number');
+        return;
+    }
+    if (pinNumber !== validPin) {
+        alert('Invalid Account')
+        return;
+    }
+    else {
+        alert('boss! Money Added Successfully')
+    }
 
-        // Add money in account 
-       document.getElementById('add-money-btn').addEventListener('click', function(e){
-        e.preventDefault();
-        const bankName = document.getElementById('bank-name').value;
-        const bankAcNumber = document.getElementById('Bank-AC').value;
-        const inputAmount = document.getElementById('input-amount').value;
-        const pin = document.getElementById('pin-number').value;
+    const inputAmount = getInputNumber('input-amount');
+    updateAmountText('totoal-Amount', inputAmount);
 
-        if(bankAcNumber.length < 11){
-            alert('Boss! Write correctly Account number');
-            return;
-        }
+    blankValue('Bank-AC');
+    blankValue('input-amount');
+    blankValue('pin-number');
+})
 
-        const pinNumber = parseInt(pin);
-        if(pinNumber !== validPin){
-            alert('Invalid Account')
-            return;
-        }
-        else{
-            alert('boss! Money Added Successfully')
-        }
-
-        const inputAmountNumber = parseInt(inputAmount);
-
-        const totalAmount = document.getElementById('totoal-Amount');
-        const getTotalAmout = totalAmount.innerText;
-        const totalAmountNumber = parseInt(getTotalAmout)
-
-        const addMoney = totalAmountNumber + inputAmountNumber;
-        totalAmount.innerText = addMoney;
-        
-
-        document.getElementById('Bank-AC').value = '';
-        document.getElementById('input-amount').value = '';
-        document.getElementById('pin-number').value = '';
-       })
+// here is common function
+function getInputNumber(id){
+    const inputAmount = document.getElementById(id).value;
+    const inputAmountNumber = parseInt(inputAmount);
+    return inputAmountNumber;
+}
 
 
-    //    cashOut Page section script
-    document.getElementById('cashout-btn').addEventListener('click', function(){
-            const cashoutAreaVisible = document.getElementById('cashout-area-visible');
-            cashoutAreaVisible.style.display = 'block';
+// function for value blank
+function blankValue(id){
+    document.getElementById(id).value = '';
+}
 
-            const moneyAreaVisible = document.getElementById('money-area-visible');
-            moneyAreaVisible.style.display = 'none';
+// common function 
+function updateAmountText(id, inputAmountNumber){
+    const totalAmount = document.getElementById(id).innerText;
+    const totalAmountNumber = parseInt(totalAmount);
+    const availableAmount = totalAmountNumber + inputAmountNumber;
+    document.getElementById(id).innerText = availableAmount;
+}
 
-        })
+function displayBlock(id){
+    const cashoutAreaVisible = document.getElementById(id);
+    cashoutAreaVisible.style.display = 'block';
+}
 
-
-        document.getElementById('cash-Out-btn').addEventListener('click', function(e){
-            e.preventDefault();
-            const agentNumber = document.getElementById('agent-Number').value;
-            const pin = document.getElementById('cashout-pin-number').value;
-            const pinNumber = parseInt(pin)
-            
-            // verify number 
-            if(agentNumber.length < 11){
-                alert('Plese input correct number');
-                return;
-            }
-            
-            const cashoutAmount = document.getElementById('cashout-amount').value;
-            const cashoutAmountNumber = parseInt(cashoutAmount);
-            // verify amount 
-            if(isNaN(cashoutAmountNumber)){
-                alert('plese input correct amount number');
-                return;
-            }
-            // verify pin
-            if(pinNumber !== validPin){
-                alert("Invalid Account");
-                return;
-            }
-            else{
-                alert('boss! cash out Successfully done')
-            }
-            
-
-            const totalAmount = document.getElementById('totoal-Amount');
-            const getTotalAmout = totalAmount.innerText;
-            const totalAmountNumber = parseInt(getTotalAmout)
-
-            const totalAmountAfterCashout = totalAmountNumber - cashoutAmountNumber;
-            totalAmount.innerText = totalAmountAfterCashout;
+function displayNone(id){
+        const moneyAreaVisible = document.getElementById(id);
+        moneyAreaVisible.style.display = 'none';
+}
 
 
-            document.getElementById('cashout-amount').value = '';
-        })
+//    cashOut feature
+document.getElementById('cashout-btn').addEventListener('click', function () {
+    displayBlock('cashout-area-visible');
+    displayNone('money-area-visible')
+})
+
+
+document.getElementById('cash-Out-btn').addEventListener('click', function (e) {
+    e.preventDefault();
+    const agentNumber = document.getElementById('agent-Number').value;
+    const pinNumber = getInputNumber('cashout-pin-number')
+
+    // verify number 
+    if (agentNumber.length < 11) {
+        alert('Plese input correct number');
+        return;
+    }
+
+    const cashoutAmount = getInputNumber('cashout-amount');
+
+    // verify amount 
+    if (isNaN(cashoutAmount)) {
+        alert('plese input correct amount number');
+        return;
+    }
+    // verify pin
+    if (pinNumber !== validPin) {
+        alert("Invalid Account");
+        return;
+    }
+    else {
+        alert('boss! cash out Successfully done')
+    }
+
+    updateAmountText('totoal-Amount', -1 * cashoutAmount);
+
+    blankValue('cashout-amount');
+    blankValue('agent-Number');
+    blankValue('cashout-pin-number');
+})
