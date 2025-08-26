@@ -1,4 +1,13 @@
 let validPin = 1234;
+// funtion for display blok none
+function visibleButton(id){
+    const forms = document.getElementsByClassName('form');
+    for(const form of forms){
+        form.style.display = 'none';
+    }
+    document.getElementById(id).style.display = 'block';
+}
+
 
 // here is common function
 function getInputNumber(id){
@@ -21,20 +30,6 @@ function updateAmountText(id, inputAmountNumber){
     document.getElementById(id).innerText = availableAmount;
 }
 
-// function for display block
-function displayBlock(id){
-    const cashoutAreaVisible = document.getElementById(id);
-    cashoutAreaVisible.style.display = 'block';
-}
-
-// function for display block
-function displayNone(id){
-        const moneyAreaVisible = document.getElementById(id);
-        moneyAreaVisible.style.display = 'none';
-}
-
-
-
 //login Page feature
 document.getElementById('login-Btn').addEventListener('click', function (e) {
     e.preventDefault()
@@ -45,9 +40,9 @@ document.getElementById('login-Btn').addEventListener('click', function (e) {
     const userId = getInputNumber('userId')
     const userPinNumber = getInputNumber('userPinNumber')
 
-    if (userId === userNumberInt && userPinNumber === userPin) {   
-        displayNone('loginArea')
-        displayBlock('second-page')
+    if (userId === userNumberInt && userPinNumber === userPin) { 
+        document.getElementById('loginArea').style.display = 'none';  
+        document.getElementById('second-page').style.display = 'block';  
     }
     else {
         alert('please try again boss');
@@ -56,14 +51,7 @@ document.getElementById('login-Btn').addEventListener('click', function (e) {
 
 
 // Add Money Feature
-document.getElementById('add-Money-form-show').addEventListener('click', function () {
-    displayBlock('money-area-visible');
-    displayNone('cashout-area-visible')
-})
 
-
-
-// Add money in account 
 document.getElementById('add-money-btn').addEventListener('click', function (e) {
     e.preventDefault();
     const bankName = document.getElementById('bank-name').value;
@@ -90,11 +78,6 @@ document.getElementById('add-money-btn').addEventListener('click', function (e) 
 
 
 // CashOut feature
-document.getElementById('cashout-btn').addEventListener('click', function () {
-    displayBlock('cashout-area-visible');
-    displayNone('money-area-visible')
-})
-
 
 document.getElementById('cash-Out-btn').addEventListener('click', function (e) {
     e.preventDefault();
@@ -123,4 +106,37 @@ document.getElementById('cash-Out-btn').addEventListener('click', function (e) {
     blankValue('cashout-amount');
     blankValue('agent-Number');
     blankValue('cashout-pin-number');
+})
+
+
+
+
+// add money button
+document.getElementById('add-Money-form-show').addEventListener('click', function () {
+    visibleButton('money-area-visible');
+})
+
+// cashout button
+document.getElementById('cashout-btn').addEventListener('click', function () {
+    visibleButton('cashout-area-visible');
+})
+
+// transfer money 
+document.getElementById('transfer-money').addEventListener('click', function(){
+    visibleButton('transfer-area-visible');
+})
+
+// Add bonus
+document.getElementById("add-bonus").addEventListener('click', function(){
+    visibleButton('bonus-area-visible');
+})
+
+// pay bill button
+document.getElementById("pay-bill").addEventListener('click', function(){
+   visibleButton('paybill-area-visible');
+})
+
+// 
+document.getElementById("transaction-btn").addEventListener('click', function(){
+   visibleButton('transaction-area-visible');
 })
