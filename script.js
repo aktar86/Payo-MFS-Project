@@ -30,6 +30,7 @@ function updateAmountText(id, inputAmountNumber){
     document.getElementById(id).innerText = availableAmount;
 }
 
+
 //login Page feature
 document.getElementById('login-Btn').addEventListener('click', function (e) {
     e.preventDefault()

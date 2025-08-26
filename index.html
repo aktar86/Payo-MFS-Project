@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
-<body class="body  bg-[#D9D9D9]">
+<body class="body h-auto bg-[#D9D9D9]">
 
     <section id="loginArea" class="w-screen h-screen flex flex-col justify-center items-center">
         <div class="w-[420px] h-[180px] bg-[url(./assets/bg.png)] bg-cover flex justify-center items-center">
@@ -156,21 +156,22 @@
         <form class="bg-white p-5 rounded-3xl">
             
             <div class="mb-3">
-                <label class="font-bold" for="">Agent Number</label>
+                <label class="font-bold" for="">User Account Number</label>
                 <br>
                 <input id="agent-Number" class="w-full mt-2 p-4 rounded-full border-none bg-[#F4F5F7] focus:outline-none" placeholder="Enter 11 Digit Number" type="text">
             </div>
             <div class="mb-3 ">
                 <label class="font-bold" for="">Amount</label>
                 <br>
-                <input id="cashout-amount" class="w-full mt-2 p-4 rounded-full border-none bg-[#F4F5F7] focus:outline-none" placeholder="Enter amount to withdraw" type="text">
+                <input id="cashout-amount" class="w-full mt-2 p-4 rounded-full border-none bg-[#F4F5F7] focus:outline-none" placeholder="Enter amount to transfer" type="text">
             </div>
             <div class="">
                 <label class="font-bold" for=""> Pin Number</label>
                 <br>
                 <input id="cashout-pin-number" class="w-full p-4 mt-2 rounded-full border-none bg-[#F4F5F7] focus:outline-none" placeholder="Enter 4 digit pin number" type="text">
             </div>
-            <button id="cash-Out-btn" class="w-full btn bg-blue-600 rounded-full text-white mt-5 p-5">Withdraw Money</button>
+
+            <button id="cash-Out-btn" class="w-full btn bg-blue-600 rounded-full text-white mt-5 p-5">Send Now</button>
         </form>
     </section>
 
@@ -180,19 +181,9 @@
         <form class="bg-white p-5 rounded-3xl">
             
             <div class="mb-3">
-                <label class="font-bold" for="">Agent Number</label>
+                <label class="font-bold" for="">Enter Bonus Coupon</label>
                 <br>
                 <input id="agent-Number" class="w-full mt-2 p-4 rounded-full border-none bg-[#F4F5F7] focus:outline-none" placeholder="Enter 11 Digit Number" type="text">
-            </div>
-            <div class="mb-3 ">
-                <label class="font-bold" for="">Amount</label>
-                <br>
-                <input id="cashout-amount" class="w-full mt-2 p-4 rounded-full border-none bg-[#F4F5F7] focus:outline-none" placeholder="Enter amount to withdraw" type="text">
-            </div>
-            <div class="">
-                <label class="font-bold" for=""> Pin Number</label>
-                <br>
-                <input id="cashout-pin-number" class="w-full p-4 mt-2 rounded-full border-none bg-[#F4F5F7] focus:outline-none" placeholder="Enter 4 digit pin number" type="text">
             </div>
             <button id="cash-Out-btn" class="w-full btn bg-blue-600 rounded-full text-white mt-5 p-5">Withdraw Money</button>
         </form>
@@ -204,27 +195,35 @@
         <form class="bg-white p-5 rounded-3xl">
             
             <div class="mb-3">
-                <label class="font-bold" for="">Agent Number</label>
+                <label class="font-bold" for="">Select To Pay</label>
                 <br>
-                <input id="agent-Number" class="w-full mt-2 p-4 rounded-full border-none bg-[#F4F5F7] focus:outline-none" placeholder="Enter 11 Digit Number" type="text">
+                <input id="agent-Number" class="w-full mt-2 p-4 rounded-full border-none bg-[#F4F5F7] focus:outline-none" placeholder="Select Bank" type="text">
             </div>
             <div class="mb-3 ">
-                <label class="font-bold" for="">Amount</label>
+                <label class="font-bold" for="">Biller Account Number</label>
                 <br>
-                <input id="cashout-amount" class="w-full mt-2 p-4 rounded-full border-none bg-[#F4F5F7] focus:outline-none" placeholder="Enter amount to withdraw" type="text">
+                <input id="cashout-amount" class="w-full mt-2 p-4 rounded-full border-none bg-[#F4F5F7] focus:outline-none" placeholder="Enter account Number" type="text">
+            </div>
+             <div class="mb-3 ">
+                <label class="font-bold" for="">Amount To Pay</label>
+                <br>
+                <input id="cashout-amount" class="w-full mt-2 p-4 rounded-full border-none bg-[#F4F5F7] focus:outline-none" placeholder="Add Amount To Pay" type="text">
             </div>
             <div class="">
                 <label class="font-bold" for=""> Pin Number</label>
                 <br>
                 <input id="cashout-pin-number" class="w-full p-4 mt-2 rounded-full border-none bg-[#F4F5F7] focus:outline-none" placeholder="Enter 4 digit pin number" type="text">
             </div>
-            <button id="cash-Out-btn" class="w-full btn bg-blue-600 rounded-full text-white mt-5 p-5">Withdraw Money</button>
+            <button id="cash-Out-btn" class="w-full btn bg-blue-600 rounded-full text-white mt-5 p-5">Pay Now</button>
         </form>
     </section>
 
     <!-- transaction section -->
     <section id="transaction-area-visible" class="form mt-10 max-w-lg mx-auto hidden">
-        <h1 class="font-bold mb-3">Transaction</h1>
+        <div class="flex justify-between items-center pr-2">
+            <h1 class="font-bold mb-3">Transaction</h1>
+            <p class="mr-1 cursor-pointer">View All</p>
+        </div>
         <form class="bg-white p-5 rounded-3xl">
             
             <div class="mb-3">
